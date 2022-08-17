@@ -1,8 +1,10 @@
 body {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
+  padding: 1rem;
 
   background: rgb(163, 208, 219);
   background: linear-gradient(
@@ -14,4 +16,36 @@ body {
     rgba(163, 208, 219, 1) 74%,
     rgba(163, 208, 219, 1) 100%
   );
+}
+
+footer{
+  width:100%;
+  position: fixed;
+  bottom: 0;
+}
+
+.body-container {
+  display: flex;
+  flex-direction: row;
+  width: 95%;
+}
+
+.search-and-map-container {
+  width: 100%;
+}
+
+
+#map {
+  height: 400px;
+  width: 100%;
+}
+
+.search-bar {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 1em;
+}
+
+#info-panel {
+ background-color: #f9f9f9;
 }
