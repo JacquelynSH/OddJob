@@ -27,17 +27,17 @@ footer{
 .body-container {
   display: flex;
   flex-direction: row;
-  width: 95%;
-}
-
-.search-and-map-container {
   width: 100%;
 }
-
 
 #map {
   height: 400px;
   width: 100%;
+  z-index: -1;
+}
+
+.search-and-map-container {
+  width: 75vw;
 }
 
 .search-bar {
@@ -47,5 +47,7 @@ footer{
 }
 
 #info-panel {
- background-color: #f9f9f9;
+  background-color: #f9f9f9;
+  width: 25vw;
+  margin-right: 1em;
 }

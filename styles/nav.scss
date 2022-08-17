@@ -1,19 +1,11 @@
 header{
-  display: flex;
-  flex-direction: row;
   width: 100%;
   position: fixed;
   top: 0;
 }
 
-.loggedin-user-container {
-  display: flex;
-  flex-direction: column;
-}
-
-.signup-login-container {
-  display: flex;
-  flex-direction: column;
+#navbarNavAltMarkup {
   justify-content: flex-end;
 }
+
 
