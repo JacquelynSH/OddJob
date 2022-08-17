@@ -1,0 +1,19 @@
+DROP TABLE IF EXISTS odd_jobs CASCADE;
+
+CREATE TABLE odd_jobs (
+  id SERIAL PRIMARY KEY NOT NULL,
+  title VARCHAR(255) NOT NULL,
+  is_business BOOLEAN NOT NULL DEFAULT FALSE,
+  lat DECIMAL,
+  lng DECIMAL,
+  description TEXT,
+  date DATE NOT NULL,
+  start_time TIME NOT NULL,
+  end_time TIME NOT NULL,
+  total_pay INTEGER NOT NULL DEFAULT 0,
+  image_url VARCHAR(255) NOT NULL,
+  employer_rating SMALLINT NOT NULL DEFAULT 0,
+  employer_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
+  worker_id INTEGER REFERENCES users(id) ON DELETE CASCADE
+);
+
