@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Create oddJob</title>
+
+  <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
+  <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/main.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/nav.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/odd_job.css" type="text/css" />
+
+  <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+  <script type="text/javascript" src="/scripts/app.js"></script>
+  <!-- BOOTSTRAP CSS -->
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+    crossorigin="anonymous"
+  />
+</head>
+
+<body>
+  <!-- NAV BAR -->
+  <%- include('partials/_header') %>
+
+
+  <form action="create_oddJob_page.php">
+    <div class="oddJob_container">
+      <h1>Create an oddJob!</h1>
+      <!-- <p>Please fill in this form to create an oddJob.</p> -->
+      <div class="create-oddJob-form">
+
+      <label for="Title"><b>Title</b></label>
+      <input type="text" placeholder="Enter job title" name="title" id="title" required>
+
+      <label for="type"><b>employer type</b></label>
+      <select id="type" name="type">
+        <option value="Business">business</option>
+        <option value="individual">individual</option>
+      </select>
+
+
+      <label for="location"><b>Location</b></label>
+      <input type="text" placeholder="Enter location" name="location" id="location" required>
+
+      <label for="date"><b>Date</b></label>
+      <input type="date" placeholder="date of oddJob" name="date" id="date" required>
+
+      <label for="start_time"><b>Start time</b></label>
+      <input type="text" placeholder="Enter start time" name="start-time" id="start-time" required>
+
+      <label for="end-time"><b>End time</b></label>
+      <input type="password" placeholder="Enter end time" name="end-time" id="end-time" required>
+
+      <label for="payment"><b>Total pay</b></label>
+      <input type="password" placeholder="Enter amount for total" name="pay" id="pay" required>
+      </div>
+
+      <button type="submit" class="Create-job">Create oddJob</button>
+    </div>
+
+    </div>
+  </form>
+</body>
+
+<!-- BOOTSTRAP JS -->
+<script
+src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+crossorigin="anonymous"
+></script>
+<script
+src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
+integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+crossorigin="anonymous"
+></script>
+<script
+src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
+integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+crossorigin="anonymous"
+></script>
+
+ <!-- FOOTER -->
+ <%- include('partials/_footer') %>
+</html>
