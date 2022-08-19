@@ -50,9 +50,16 @@ footer{
   background-color: #f9f9f9;
   width: 25vw;
   margin-right: 1em;
+  display: flex;
+  flex-direction: column;
+  padding: 1em;
 }
 
 .search-input {
   width: 100%;
   margin-right: 0.5em;
+}
+
+.job-details {
+
 }
