@@ -27,7 +27,7 @@ footer{
 .body-container {
   display: flex;
   flex-direction: row;
-  width: 100%;
+  width: 80%;
 }
 
 #map {
@@ -50,4 +50,9 @@ footer{
   background-color: #f9f9f9;
   width: 25vw;
   margin-right: 1em;
+}
+
+.search-input {
+  width: 100%;
+  margin-right: 0.5em;
 }
