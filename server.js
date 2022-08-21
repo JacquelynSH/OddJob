@@ -7,6 +7,7 @@ const sassMiddleware = require("./lib/sass-middleware");
 const express = require("express");
 const app = express();
 const morgan = require("morgan");
+const cookieSession = require('cookie-session');
 
 // PG database client/connection setup
 const { Pool } = require("pg");
@@ -43,6 +44,13 @@ const widgetsRoutes = require("./routes/widgets");
 app.use("/api/users", usersRoutes(db));
 app.use("/api/widgets", widgetsRoutes(db));
 // Note: mount other resources here, using the same pattern above
+app.use(
+  cookieSession({
+    name: 'session',
+    keys: ['notsecret', 'maybesecret', 'definitelysecret'],
+    maxAge: 24 * 60 * 60 * 1000,
+  })
+);
 
 // Home page
 // Warning: avoid creating more routes in this file!
@@ -55,6 +63,14 @@ app.get("/", (req, res) => {
 
 app.get("/login", (req, res) => {
   res.render("login");
+});
+
+app.get('/login/:id', (req, res) => {
+  // using encrypted cookies
+  req.session.user_id = req.params.id;
+  console.log("USERID: ", req.params['id'])
+  // send the user somewhere
+  res.redirect('/');
 });
 
 app.get("/oddjob", (req, res) => {
@@ -71,6 +87,11 @@ app.get("/favourites", (req, res) => {
 
 app.get("/dashboard", (req, res) => {
   res.render("dashboard");
+});
+
+app.post("/logout", (req, res) => {
+  req.session = null;
+  res.redirect("/");
 });
 
 app.listen(PORT, () => {
