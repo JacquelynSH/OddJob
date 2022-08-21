@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="/styles/main.css" type="text/css" />
   <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
   <link rel="stylesheet" href="/styles/nav.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/dashboard.css" type="text/css" />
 
   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
   <script type="text/javascript" src="/scripts/app.js"></script>
@@ -21,16 +22,103 @@
   />
 </head>
 
+
 <body>
   <!-- NAV BAR -->
-  <%- include('partials/_header') %>
+    <%- include('partials/_header') %>
+<div class="dashboard-container">
+  <div id="dashboard-taken-jobs">
+    Oddjobs taken
+
+    <div> oddJob1
+      <details>
+        <ul>
+        <li>Job Title:</li>
+        <li>Location:</li>
+        <li>Start time:</li>
+        <li>End time:</li>
+        <li>Pay</li>
+        </ul>
+      </details>
+    </div>
+    <div> oddJob2
+      <details>
+        <ul>
+        <li>Job Title:</li>
+        <li>Location:</li>
+        <li>Start time:</li>
+        <li>End time:</li>
+        <li>Pay</li>
+        </ul>
+      </details>
+    </div>
+    <div> oddJob3
+      <details>
+        <ul>
+        <li>Job Title:</li>
+        <li>Location:</li>
+        <li>Start time:</li>
+        <li>End time:</li>
+        <li>Pay</li>
+        </ul>
+      </details>
+    </div>
+
+  </div>
 
 
-<!-- insert useful things here -->
+  <div class="user-profile">
+  <img class="user-picture" src="stockstore.png" alt="fake shop" width="100%" height="120em">
+    <div class="user-profile-contents">
+      User Name
+      User Email
+      Phone number
+      Password
+      Location
+    </div>
 
 
+  </div>
 
+  <div id="dashboard-posted-jobs">
+    Oddjobs posted
 
+      <div> oddJob1
+        <details>
+          <ul>
+          <li>Job Title:</li>
+          <li>Location:</li>
+          <li>Start time:</li>
+          <li>End time:</li>
+          <li>Pay</li>
+          </ul>
+        </details>
+      </div>
+      <div> oddJob2
+        <details>
+          <ul>
+          <li>Job Title:</li>
+          <li>Location:</li>
+          <li>Start time:</li>
+          <li>End time:</li>
+          <li>Pay</li>
+          </ul>
+        </details>
+      </div>
+      <div> oddJob3
+        <details>
+          <ul>
+          <li>Job Title:</li>
+          <li>Location:</li>
+          <li>Start time:</li>
+          <li>End time:</li>
+          <li>Pay</li>
+          </ul>
+        </details>
+      </div>
+
+</div>
+</div>
 </body>
 
 <!-- FOOTER -->

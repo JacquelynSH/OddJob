@@ -1,0 +1,24 @@
+.dashboard-container {
+  display: flex;
+  flex: row;
+  justify-content: space-between;
+  width: 60%;
+}
+
+#dashboard-taken-jobs {
+  background-color: white;
+  width: 14em;
+  height: 28em;
+}
+
+#dashboard-posted-jobs {
+  background-color: white;
+  width: 14em;
+  height: 28em;
+}
+
+.user-profile {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+}
