@@ -31,7 +31,13 @@ width: 75%;
 }
 
 .user-picture {
-
 height: 9rem;
+}
+
+.user-profile-contents {
+  display: flex;
+  flex-direction: column;
+  height: 338px;
+  padding-top: 1em;
 }
 
