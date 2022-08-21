@@ -53,6 +53,26 @@ app.get("/", (req, res) => {
   res.render("index");
 });
 
+app.get("/login", (req, res) => {
+  res.render("login");
+});
+
+app.get("/oddjob", (req, res) => {
+  res.render("odd_job");
+});
+
+app.get("/signup", (req, res) => {
+  res.render("sign_up");
+});
+
+app.get("/favourites", (req, res) => {
+  res.render("favourites");
+});
+
+app.get("/dashboard", (req, res) => {
+  res.render("dashboard");
+});
+
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
 });
