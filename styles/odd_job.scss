@@ -8,6 +8,7 @@
 .job-description {
   display: flex;
   flex-direction: column;
+  padding: 1em;
 }
 
 .create-oddJob-form {
@@ -23,4 +24,8 @@ height: 45%;
 
 #oddjob-photo {
   padding-top: 1em;
+}
+
+.description-label {
+padding-top: 1em;
 }

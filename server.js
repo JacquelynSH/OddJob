@@ -84,6 +84,7 @@ app.get("/signup", (req, res) => {
   res.render("sign_up");
 });
 
+
 app.get("/favourites", (req, res) => {
   res.render("favourites");
 });
@@ -95,6 +96,13 @@ app.get("/dashboard", (req, res) => {
 app.post("/logout", (req, res) => {
   req.session = null;
   res.redirect("/");
+});
+
+//FORM CONNECTED HERE FROM SIGN_UP.EJS
+app.post("/signup", (req, res) => {
+  console.log(req.body)
+  res.redirect("/")
+
 });
 
 //FORM CONNECTED FROM ODD_JOB.EJS
