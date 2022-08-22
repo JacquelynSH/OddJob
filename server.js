@@ -73,9 +73,12 @@ app.get('/login/:id', (req, res) => {
   res.redirect('/');
 });
 
+
 app.get("/oddjob", (req, res) => {
   res.render("odd_job");
 });
+
+
 
 app.get("/signup", (req, res) => {
   res.render("sign_up");
@@ -92,6 +95,12 @@ app.get("/dashboard", (req, res) => {
 app.post("/logout", (req, res) => {
   req.session = null;
   res.redirect("/");
+});
+
+//FORM CONNECTED FROM ODD_JOB.EJS
+app.post("/createjob", (req, res) => {
+  console.log(req.body)
+  res.redirect("/")
 });
 
 app.listen(PORT, () => {

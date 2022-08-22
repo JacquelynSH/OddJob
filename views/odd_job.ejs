@@ -26,43 +26,55 @@
   <!-- NAV BAR -->
   <%- include('partials/_header') %>
 
-
-  <form action="create_oddJob_page.php">
+ <!-- ADD A METHOD TO CONNECT TO THE ROUTE AND AN ACTION TO TELL THE INFO WHERE TO GO -->
+  <form method="POST" action="/createjob">
     <div class="oddJob_container">
       <h1>Create an oddJob!</h1>
       <!-- <p>Please fill in this form to create an oddJob.</p> -->
-      <div class="create-oddJob-form">
+      <div id="entire-oddjob-form">
+        <div class="create-oddJob-form">
 
-      <label for="Title"><b>Title</b></label>
-      <input type="text" placeholder="Enter job title" name="title" id="title" required>
+        <label for="Title"><b>Title</b></label>
+        <input type="text" placeholder="Enter job title" name="title" id="title" required>
 
-      <label for="type"><b>employer type</b></label>
-      <select id="type" name="type">
-        <option value="Business">business</option>
-        <option value="individual">individual</option>
-      </select>
+        <label for="type"><b>employer type</b></label>
+        <select id="type" name="type">
+          <option value="Business">Business</option>
+          <option value="individual">Individual</option>
+        </select>
 
+        <label for="location"><b>Location</b></label>
+        <input type="text" placeholder="Enter location" name="location" id="location" required>
 
-      <label for="location"><b>Location</b></label>
-      <input type="text" placeholder="Enter location" name="location" id="location" required>
+        <label for="date"><b>Date</b></label>
+        <input type="date" placeholder="date of oddJob" name="date" id="date" required>
 
-      <label for="date"><b>Date</b></label>
-      <input type="date" placeholder="date of oddJob" name="date" id="date" required>
+        <label for="start_time"><b>Start time</b></label>
+        <input type="time" placeholder="Enter start time" name="start-time" id="start-time" required>
 
-      <label for="start_time"><b>Start time</b></label>
-      <input type="text" placeholder="Enter start time" name="start-time" id="start-time" required>
+        <label for="end-time"><b>End time</b></label>
+        <input type="time" placeholder="Enter end time" name="end-time" id="end-time" required>
 
-      <label for="end-time"><b>End time</b></label>
-      <input type="password" placeholder="Enter end time" name="end-time" id="end-time" required>
+        <label for="payment"><b>Total pay</b></label>
+        <input type="text" placeholder="Enter amount for total job ex. $00.00" name="pay" id="pay" required>
 
-      <label for="payment"><b>Total pay</b></label>
-      <input type="password" placeholder="Enter amount for total" name="pay" id="pay" required>
+        <button type="submit" class="Create-job">Create oddJob</button>
       </div>
 
-      <button type="submit" class="Create-job">Create oddJob</button>
-    </div>
+      <div class="job-description">
+        <label for="description"><b>Job description</b></label>
+        <input type="text" contentseditable="true" placeholder="Descript details of job" name="description" id="description" required>
+
+        <label for="insert-photo"><b>Drag + drop photo here</b></label>
+        <input type="image" name="oddjob-photo" id="oddjob-photo" required>
+
+
+      </div>
+
 
     </div>
+    </div>
+
   </form>
 </body>
 

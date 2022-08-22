@@ -1,4 +1,26 @@
+
+#entire-oddjob-form {
+  display: flex;
+  flex-direction: row;
+  width: 25em;
+}
+
+.job-description {
+  display: flex;
+  flex-direction: column;
+}
+
 .create-oddJob-form {
 display: flex;
 flex-direction: column;
+padding: 1em;
+}
+
+#description {
+height: 45%;
+
+}
+
+#oddjob-photo {
+  padding-top: 1em;
 }
