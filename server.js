@@ -100,16 +100,21 @@ app.post("/logout", (req, res) => {
 
 //FORM CONNECTED HERE FROM SIGN_UP.EJS
 app.post("/signup", (req, res) => {
-  console.log(req.body)
-  res.redirect("/")
-
+  console.log(req.body);
+  res.redirect("/");
 });
+
+app.post("/login", (req, res) => {
+  console.log(req.body);
+  res.redirect("/");
+})
 
 //FORM CONNECTED FROM ODD_JOB.EJS
 app.post("/createjob", (req, res) => {
-  console.log(req.body)
-  res.redirect("/")
+  console.log(req.body);
+  res.redirect("/");
 });
+
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
