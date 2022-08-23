@@ -1,11 +1,41 @@
 // Client facing scripts here
-let map;
+// let map;
 
-      function initMap() {
-        map = new google.maps.Map(document.getElementById("map"), {
-          center: { lat: -34.397, lng: 150.644 },
-          zoom: 8,
-        });
-      }
+//       function initMap() {
+//         map = new google.maps.Map(document.getElementById("map"), {
+//           center: { lat: -34.397, lng: 150.644 },
+//           zoom: 8,
+//         });
+//       }
 
-      window.initMap = initMap;
+//       window.initMap = initMap;
+
+function initMap() {
+  let location = {
+    lat: -34.397,
+    lng: 150.644
+  }
+  let options = {
+    center: location,
+    zoom: 8
+  }
+
+  if (navigator.geolocation) {
+    console.log('Geolocation is here!');
+    navigator.geolocation.getCurrentPosition((loc) => {
+      location.lat = loc.coords.latitude;
+      location.lng = loc.coords.longitude;
+      console.log('USER LOCATION:', location.lat, location.lng)
+
+      map = new google.maps.Map(document.getElementById("map"), options);
+    },
+    (err) => {
+      console.log("User declined locaiton tracking");
+      map = new google.maps.Map(document.getElementById("map"), options);
+    }
+    )
+  } else {
+    console.log('No geolocation :(');
+    map = new google.maps.Map(document.getElementById("map"), options);
+  }
+}
