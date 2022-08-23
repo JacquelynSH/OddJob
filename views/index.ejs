@@ -51,18 +51,20 @@
   <!-- SEARCH BAR -->
   <div class="search-and-map-container">
   <form action="" class="search-bar">
-    <input type="search" name="search" pattern=".*\S.*" class="search-input" required />
+    <input type="search" name="search" pattern=".*\S.*" id="search-input" placeholder="Search for a city" required />
     <button class="search-btn" type="submit">
       <span>Search</span>
     </button>
   </form>
 </body>
 <!-- MAP INTEGRATION -->
+
+<!-- added libraries=places before the callback function below after the api key -->
     <div id="map"></div>
     <script
       async
       defer
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCXydRGMqZctiY0ZQ4S55rChkRF135CnVA&callback=initMap"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCXydRGMqZctiY0ZQ4S55rChkRF135CnVA&libraries=places&callback=initMap"
     ></script>
   </div>
   </div>
