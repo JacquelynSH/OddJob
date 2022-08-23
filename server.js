@@ -95,17 +95,22 @@ const createOddjob = (title, type, description, date, starttime, endtime, pay) =
  ******************************************************/
 
 app.get('/dashboard', (req, res) => {
-    getOddjobById(req.params.id).then(oddjobs => {
+    console.log("USERID: ",req.session.user_id);
+    getOddjobById(req.session.user_id).then(oddjobs => {
         const templateVars = {oddjobs};
         res.render('dashboard', templateVars);
     });
 });
 
 const getOddjobById = (id) => {
+  console.log("ID: ", id);
     return db.query(
         'SELECT * FROM odd_jobs WHERE id=$1;',
         [id] // This array will be sanitized for safety.
-    ).then(result => result.rows);
+    ).then((result) => {
+      console.log("SELECT * FROM odd_jobs WHERE id=$1;", result.rows);
+      return result.rows
+    });
 };
 
 
