@@ -57,11 +57,65 @@ app.use(
 // Separate them into separate routes files (see above).
 
 /******************************************************
- * CREATE
+ * HELPER FUNCTIONS
  ******************************************************/
+
+ const createOddjob = (title, type, description, date, starttime, endtime, pay) => {
+  return db.query(
+      'INSERT INTO odd_jobs (title, employer_type, description, date, start_time, end_time, total_pay) VALUES ($1, $2, $3, $4, $5, $6, $7);',
+      [title, type, description, date, starttime, endtime, pay]
+  );
+};
+
+const getOddjobById = (id) => {
+  console.log("ID: ", id);
+    return db.query(
+        'SELECT * FROM odd_jobs WHERE id=$1;',
+        [id] // This array will be sanitized for safety.
+    ).then((result) => {
+      console.log("SELECT * FROM odd_jobs WHERE id=$1;", result.rows);
+      return result.rows
+    });
+};
+
+/******************************************************
+ * ROUTES
+ ******************************************************/
+
+ app.get("/", (req, res) => {
+  res.render("index");
+});
+
+app.get("/login", (req, res) => {
+  res.render("login");
+});
+
+app.get("/signup", (req, res) => {
+  res.render("sign_up");
+});
+
+
 // NEW FORM
 app.get("/oddjob", (req, res) => {
   res.render("odd_job");
+});
+
+app.get('/dashboard', (req, res) => {
+    console.log("USERID: ",req.session.user_id);
+    getOddjobById(req.session.user_id).then(oddjobs => {
+        const templateVars = {oddjobs};
+        res.render('dashboard', templateVars);
+    });
+});
+
+// app.get("/favourites", (req, res) => {
+//   res.render("favourites");
+// });
+
+
+app.get('/login/:id', (req, res) => {
+  req.session.user_id = req.params.id;
+  res.redirect('/');
 });
 
 // FORM SUBMISSION
@@ -77,87 +131,16 @@ app.post('/oddjob', (req, res) => {
     res.redirect('/dashboard')
   })
 });
-// title, is_business, lat, lng, description, date, start_time, end_time, total_pay,image_url, employer_rating, employer_id, worker_id
-// CREATE:
-const createOddjob = (title, type, description, date, starttime, endtime, pay) => {
-    return db.query(
-        'INSERT INTO odd_jobs (title, employer_type, description, date, start_time, end_time, total_pay) VALUES ($1, $2, $3, $4, $5, $6, $7);',
-        [title, type, description, date, starttime, endtime, pay]
-    );
-};
 
-/******************************************************
- * DELETE
- ******************************************************/
-
-/******************************************************
- * READ
- ******************************************************/
-
-app.get('/dashboard', (req, res) => {
-    console.log("USERID: ",req.session.user_id);
-    getOddjobById(req.session.user_id).then(oddjobs => {
-        const templateVars = {oddjobs};
-        res.render('dashboard', templateVars);
-    });
-});
-
-const getOddjobById = (id) => {
-  console.log("ID: ", id);
-    return db.query(
-        'SELECT * FROM odd_jobs WHERE id=$1;',
-        [id] // This array will be sanitized for safety.
-    ).then((result) => {
-      console.log("SELECT * FROM odd_jobs WHERE id=$1;", result.rows);
-      return result.rows
-    });
-};
-
-
-/******************************************************
- * UPDATE
- ******************************************************/
-
-app.get("/", (req, res) => {
-  res.render("index");
-});
-
-// app.get("/login", (req, res) => {
-//   res.render("login");
-// });
-
-app.get('/login/:id', (req, res) => {
-  req.session.user_id = req.params.id;
-  res.redirect('/');
-});
-
-// app.get("/signup", (req, res) => {
-//   res.render("sign_up");
-// });
-
-// app.get("/favourites", (req, res) => {
-//   res.render("favourites");
-// });
-
-// app.get("/dashboard", (req, res) => {
-//   res.render("dashboard");
-// });
-
-// app.post("/logout", (req, res) => {
-//   req.session = null;
-//   res.redirect("/");
-// });
-
-// //FORM CONNECTED HERE FROM SIGN_UP.EJS
-// app.post("/signup", (req, res) => {
-//   // console.log(req.body);
-//   res.redirect("/");
-// });
 
 // app.post("/login", (req, res) => {
 //   // console.log(req.body);
 //   res.redirect("/");
 // });
+
+/******************************************************
+ * LISTENER
+ ******************************************************/
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
