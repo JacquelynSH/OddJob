@@ -21,7 +21,7 @@ function initMap() {
   };
   let options = {
     center: location,
-    zoom: 8,
+    zoom: 7,
   };
 
   if (navigator.geolocation) {
@@ -62,19 +62,11 @@ function initMap() {
     const lat = place.geometry.location.lat();
     const lng = place.geometry.location.lng();
     const center = new google.maps.LatLng(lat, lng);
-    // const map = document.getElementById("map");
     console.log(map)
     map.panTo(center);
-    // map = new google.maps.Map(document.getElementById("map"), p);
   });
 
-  // autocomplete.addListener("place_changed", () => {
-  //   const place = autocomplete.getPlace();
-  //   new google.maps.Marker({
-  //     position: place.geometry.location,
-  //     title: place.name,
-  //     map: map
 
-  //   })
-  // });
-}
+};
+
+
