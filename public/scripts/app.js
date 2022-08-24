@@ -65,8 +65,6 @@ function initMap() {
     console.log(map)
     map.panTo(center);
   });
-
-
 };
 
 
