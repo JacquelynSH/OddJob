@@ -50,7 +50,7 @@ function initMap() {
     document.getElementById("search-input"),
     {
       componentRestrictions: { country: ["ca"] },
-      fields: [],
+      fields: ["geometry"],
       types: [],
     }
   );

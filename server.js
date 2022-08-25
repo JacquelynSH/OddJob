@@ -2,7 +2,7 @@
 require("dotenv").config();
 
 // Web server config
-const PORT = process.env.PORT || 3003;
+const PORT = process.env.PORT || 3004;
 const sassMiddleware = require("./lib/sass-middleware");
 const express = require("express");
 const app = express();
@@ -74,7 +74,7 @@ app.post('/oddjob', (req, res) => {
     oddjob.type = true;
   }
   createOddjob(oddjob.title, oddjob.type, oddjob.description, oddjob.date, oddjob.starttime, oddjob.endtime, oddjob.pay).then(() => {
-    res.redirect('/dashboard')
+    res.redirect('/')
   })
 });
 // title, is_business, lat, lng, description, date, start_time, end_time, total_pay,image_url, employer_rating, employer_id, worker_id

@@ -4,7 +4,7 @@ function initMap() {
     document.getElementById("location"),
     {
       componentRestrictions: { country: ["ca"] },
-      fields: ["address_components"],
+      fields: ["geometry","address_components"],
       types: ["address"],
     }
   );
@@ -12,9 +12,11 @@ function initMap() {
     const place = autocomplete.getPlace();
     console.log(place)
 
-    // new google.maps.Marker({
-
-    // })
   });
 };
 
+// let submitForm = document.querySelector("entire-oddjob-form");
+// submitForm.addEventListener("submit", () => {
+//   const pin = document.querySelector("location");
+//   console.log(pin);
+// });
