@@ -51,7 +51,6 @@ function initMap() {
       types: [],
     }
   );
-  
   //event listener to repostion map on search bar coords
   mapsearch.addListener("place_changed", () => {
     const place = mapsearch.getPlace();
@@ -64,29 +63,50 @@ function initMap() {
       lat,
       lng
     }
-    
     map.panTo(center);
-  });
-
-  //autocomplete for oddjob location
-  joblocation = new google.maps.places.Autocomplete(
-    document.getElementById("location"),
-    {
-      componentRestrictions: { country: ["ca"] },
-      fields: ["geometry"],
-      types: [],
-    }
-  );
-  
-  //event listener to console log oddjob location coords
-  joblocation.addListener("place_changed", () => {
-    const place = joblocation.getPlace();
-      
-    const lat = place.geometry.location.lat();
-    const lng = place.geometry.location.lng();
-    console.log("LAT:", lat, "LNG:", lng);
     
-    document.getElementById('latitude').value = lat;
-    document.getElementById('longitude').value = lng;
+    //autocomplete for oddjob location
+    joblocation = new google.maps.places.Autocomplete(
+      document.getElementById("location"),
+      {
+        componentRestrictions: { country: ["ca"] },
+        fields: ["geometry"],
+        types: [],
+      }
+    );
+    
+    //event listener to console log oddjob location coords
+    joblocation.addListener("place_changed", () => {
+      const place = joblocation.getPlace();
+        
+      const lat = place.geometry.location.lat();
+      const lng = place.geometry.location.lng();
+      console.log("LAT:", lat, "LNG:", lng);
+      
+      document.getElementById('latitude').value = lat;
+      document.getElementById('longitude').value = lng;
+    });
+
+// adds a pin to the map based on above info
+  function addPin (coords) {
+    const marker = new google.maps.Marker({
+      position: coords,
+      title: place.name,
+      map: map,
+    })
+// message for info window
+    const infoWindow = new google.maps.InfoWindow({
+      content: '<h1>"You are here"</h1>',
+    });
+// click listener to make the window pop up
+    marker.addListener('click', () => {
+      infoWindow.open({map, anchor: marker, shouldFocus: false,});
+    });
+  };
+
+  addPin(center);
+
   });
+  window.initMap = initMap;
+
 };
