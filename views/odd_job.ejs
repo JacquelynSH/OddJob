@@ -12,7 +12,7 @@
   <link rel="stylesheet" href="/styles/odd_job.css" type="text/css" />
 
   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
-  <script type="text/javascript" src="/scripts/app.js"></script>
+  <script type="text/javascript" src="/scripts/marker.js"></script>
   <!-- BOOTSTRAP CSS -->
   <link
     rel="stylesheet"
@@ -26,11 +26,15 @@
   <!-- NAV BAR -->
   <%- include('partials/_header') %>
 
+
+
+
  <!-- ADD A METHOD TO CONNECT TO THE ROUTE AND AN ACTION TO TELL THE INFO WHERE TO GO -->
   <form method="POST" action="/oddjob">
     <div class="oddJob_container">
       <h1>Create an oddJob!</h1>
-      <!-- <p>Please fill in this form to create an oddJob.</p> -->
+
+
       <div id="entire-oddjob-form">
         <div class="create-oddJob-form">
 
@@ -76,6 +80,11 @@
     </div>
 
   </form>
+  <script
+  async
+  defer
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCXydRGMqZctiY0ZQ4S55rChkRF135CnVA&libraries=places&callback=initMap"
+></script>
 </body>
 
 

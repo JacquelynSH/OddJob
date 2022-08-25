@@ -2,7 +2,7 @@
 require("dotenv").config();
 
 // Web server config
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3004;
 const sassMiddleware = require("./lib/sass-middleware");
 const express = require("express");
 const app = express();
@@ -60,11 +60,35 @@ app.use(
  * HELPER FUNCTIONS
  ******************************************************/
 
+<<<<<<< HEAD
  const createOddjob = (title, type, description, date, starttime, endtime, pay) => {
   return db.query(
       'INSERT INTO odd_jobs (title, employer_type, description, date, start_time, end_time, total_pay) VALUES ($1, $2, $3, $4, $5, $6, $7);',
       [title, type, description, date, starttime, endtime, pay]
   );
+ }
+=======
+// FORM SUBMISSION
+app.post('/oddjob', (req, res) => {
+  const oddjob = req.body;
+  console.log(oddjob);
+  if (oddjob.type === 'individual') {
+    oddjob.type = false;
+  } else {
+    oddjob.type = true;
+  }
+  createOddjob(oddjob.title, oddjob.type, oddjob.description, oddjob.date, oddjob.starttime, oddjob.endtime, oddjob.pay).then(() => {
+    res.redirect('/')
+  })
+});
+// title, is_business, lat, lng, description, date, start_time, end_time, total_pay,image_url, employer_rating, employer_id, worker_id
+// CREATE:
+const createOddjob = (title, type, description, date, starttime, endtime, pay) => {
+    return db.query(
+        'INSERT INTO odd_jobs (title, employer_type, description, date, start_time, end_time, total_pay) VALUES ($1, $2, $3, $4, $5, $6, $7);',
+        [title, type, description, date, starttime, endtime, pay]
+    );
+>>>>>>> pins
 };
 
 const getOddjobById = (id) => {
