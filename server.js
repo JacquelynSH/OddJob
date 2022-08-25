@@ -82,26 +82,39 @@ const getUserById = (id) => {
   console.log("ID: ", id);
   return db.query(
     'SELECT * FROM users WHERE id=$1;', [id]
-  ).then((result) =>{
+  ).then((result) => {
     return result.rows[0];
   })
   
-}
+};
 
 const getOddjobWorkerById = (id) => {
   console.log("ID: ", id);
   return db.query(
     'SELECT * FROM odd_jobs WHERE worker_id=$1;', [id]
-  ).then((result) =>{
+  ).then((result) => {
     return result.rows;
+  })
+};
+
+const getAllOddjobs = () => {
+  return db.query(
+    'SELECT * FROM odd_jobs WHERE worker_id=null;'
+  ).then((result) => {
+    console.log(result.rows)
+    return result.rows
   })
 }
 /******************************************************
  * ROUTES
  ******************************************************/
 
- app.get("/", (req, res) => {
-  res.render("index");
+app.get("/", (req, res) => {
+        getAllOddjobs().then(allJobs => {
+        const templateVars = {allJobs};
+        res.render('index', templateVars);
+      });
+  // res.render("index");
 });
 
 app.get("/login", (req, res) => {
