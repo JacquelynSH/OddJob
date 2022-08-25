@@ -1,20 +1,7 @@
-// Client facing scripts here
-// let map;
-
-//       function initMap() {
-//         map = new google.maps.Map(document.getElementById("map"), {
-//           center: { lat: -34.397, lng: 150.644 },
-//           zoom: 8,
-//         });
-//       }
-
-//       window.initMap = initMap;
-
-
-// re jigged the code based on a youtube tutorials, same same but different lol
-
 function initMap() {
   let map;
+
+  //default location for map
   let location = {
     lat: -34.397,
     lng: 150.644,
@@ -23,7 +10,7 @@ function initMap() {
     center: location,
     zoom: 7,
   };
-
+// location prompt for user
   if (navigator.geolocation) {
     console.log("Geolocation is here!");
     navigator.geolocation.getCurrentPosition(
@@ -44,8 +31,6 @@ function initMap() {
     map = new google.maps.Map(document.getElementById("map"), options);
   }
 
-  // adding auto complete to search bar
-
   autocomplete = new google.maps.places.Autocomplete(
     document.getElementById("search-input"),
     {
@@ -57,14 +42,33 @@ function initMap() {
 
   autocomplete.addListener("place_changed", () => {
     const place = autocomplete.getPlace();
-    // something here to re-focus the map to a new city
-
     const lat = place.geometry.location.lat();
     const lng = place.geometry.location.lng();
     const center = new google.maps.LatLng(lat, lng);
-    console.log(map)
     map.panTo(center);
+
+// adds a pin to the map based on above info
+  function addPin (coords) {
+    const marker = new google.maps.Marker({
+      position: coords,
+      title: place.name,
+      map: map,
+    })
+// message for info window
+    const infoWindow = new google.maps.InfoWindow({
+      content: '<h1>"You are here"</h1>',
+    });
+// click listener to make the window pop up
+    marker.addListener('click', () => {
+      infoWindow.open({map, anchor: marker, shouldFocus: false,});
+    });
+  };
+
+  addPin(center);
+
   });
 };
+
+window.initMap = initMap;
 
 
