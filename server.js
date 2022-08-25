@@ -99,7 +99,7 @@ const getOddjobWorkerById = (id) => {
 
 const getAllOddjobs = () => {
   return db.query(
-    'SELECT * FROM odd_jobs WHERE worker_id=null;'
+    'SELECT * FROM odd_jobs WHERE worker_id IS NULL;'
   ).then((result) => {
     console.log(result.rows)
     return result.rows
@@ -110,10 +110,10 @@ const getAllOddjobs = () => {
  ******************************************************/
 
 app.get("/", (req, res) => {
-        getAllOddjobs().then(allJobs => {
-        const templateVars = {allJobs};
-        res.render('index', templateVars);
-      });
+    getAllOddjobs().then(allJobs => {
+    const templateVars = {allJobs};
+    res.render('index', templateVars);
+  });
   // res.render("index");
 });
 
