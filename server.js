@@ -60,44 +60,20 @@ app.use(
  * HELPER FUNCTIONS
  ******************************************************/
 
-<<<<<<< HEAD
- const createOddjob = (title, type, description, date, starttime, endtime, pay) => {
+const createOddjob = (title, type, description, date, starttime, endtime, pay, id) => {
   return db.query(
-      'INSERT INTO odd_jobs (title, employer_type, description, date, start_time, end_time, total_pay) VALUES ($1, $2, $3, $4, $5, $6, $7);',
-      [title, type, description, date, starttime, endtime, pay]
+      'INSERT INTO odd_jobs (title, employer_type, description, date, start_time, end_time, total_pay, employer_id) VALUES ($1, $2, $3, $4, $5, $6, $7, $8);',
+      [title, type, description, date, starttime, endtime, pay, id]
   );
- }
-=======
-// FORM SUBMISSION
-app.post('/oddjob', (req, res) => {
-  const oddjob = req.body;
-  console.log(oddjob);
-  if (oddjob.type === 'individual') {
-    oddjob.type = false;
-  } else {
-    oddjob.type = true;
-  }
-  createOddjob(oddjob.title, oddjob.type, oddjob.description, oddjob.date, oddjob.starttime, oddjob.endtime, oddjob.pay).then(() => {
-    res.redirect('/')
-  })
-});
-// title, is_business, lat, lng, description, date, start_time, end_time, total_pay,image_url, employer_rating, employer_id, worker_id
-// CREATE:
-const createOddjob = (title, type, description, date, starttime, endtime, pay) => {
-    return db.query(
-        'INSERT INTO odd_jobs (title, employer_type, description, date, start_time, end_time, total_pay) VALUES ($1, $2, $3, $4, $5, $6, $7);',
-        [title, type, description, date, starttime, endtime, pay]
-    );
->>>>>>> pins
-};
+}
 
 const getOddjobById = (id) => {
   console.log("ID: ", id);
     return db.query(
-        'SELECT * FROM odd_jobs WHERE id=$1;',
+        'SELECT * FROM odd_jobs WHERE employer_id=$1;',
         [id] // This array will be sanitized for safety.
     ).then((result) => {
-      console.log("SELECT * FROM odd_jobs WHERE id=$1;", result.rows);
+      console.log("SELECT * FROM odd_jobs WHERE employer_id=$1;", result.rows);
       return result.rows
     });
 };
@@ -118,6 +94,9 @@ app.get("/signup", (req, res) => {
   res.render("sign_up");
 });
 
+// app.get("/favourites", (req, res) => {
+//   res.render("favourites");
+// });
 
 // NEW FORM
 app.get("/oddjob", (req, res) => {
@@ -132,11 +111,6 @@ app.get('/dashboard', (req, res) => {
     });
 });
 
-// app.get("/favourites", (req, res) => {
-//   res.render("favourites");
-// });
-
-
 app.get('/login/:id', (req, res) => {
   req.session.user_id = req.params.id;
   res.redirect('/');
@@ -145,17 +119,17 @@ app.get('/login/:id', (req, res) => {
 // FORM SUBMISSION
 app.post('/oddjob', (req, res) => {
   const oddjob = req.body;
+  const id = req.session.user_id;
   console.log(oddjob);
   if (oddjob.type === 'individual') {
     oddjob.type = false;
   } else {
     oddjob.type = true;
   }
-  createOddjob(oddjob.title, oddjob.type, oddjob.description, oddjob.date, oddjob.starttime, oddjob.endtime, oddjob.pay).then(() => {
+  createOddjob(oddjob.title, oddjob.type, oddjob.description, oddjob.date, oddjob.starttime, oddjob.endtime, oddjob.pay, id).then(() => {
     res.redirect('/dashboard')
   })
 });
-
 
 // app.post("/login", (req, res) => {
 //   // console.log(req.body);

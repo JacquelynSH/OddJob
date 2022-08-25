@@ -84,43 +84,39 @@
   </div>
 
   <div id="dashboard-posted-jobs">
-    Oddjobs posted
-
-      <!-- <div> oddJob1
-        <details>
-          <ul>
-          <li>Job Title:</li>
-          <li>Location:</li>
-          <li>Start time:</li>
-          <li>End time:</li>
-          <li>Pay</li>
-          </ul>
-        </details>
-      </div> -->
-      <% for (const oddjob of oddjobs) { %>
-        <div>
-          <%= oddjob.title %>
+    Your Open oddJobs
+    <% for (const oddjob of oddjobs) { %>
+      <div>
+        <%= oddjob.title %>
           <details>
-          <ul>
-              <li>Type: <%= oddjob.type %></li>
-              <li>Location: <%= oddjob.location %></li>
-              <li>Date: <%= oddjob.date %></li>
-              <li>Start Time: <%= oddjob.starttime %></li>
-              <li>End Time: <%= oddjob.endtime %></li>
-              <li>Pay: <%= oddjob.pay %></li>
-              <li>Description: <%= oddjob.description %></li>
-          <% } // End oddjobs loop. %>
-          </ul>
-        </details>
-        </div>
-
-
-
-
-
-</div>
-</div>
+            <ul>
+              <% if (oddjob.employer_type===false) { %>
+                <li>Type: Individual</li>
+                <% } else { %>
+                  <li>Type: Business</li>
+                  <% } %>
+                    <li>Lat: <%= oddjob.lat %>
+                    </li>
+                    <li>Lng: <%= oddjob.lng %>
+                    </li>
+                    <li>Date: <%= oddjob.date %>
+                    </li>
+                    <li>Start Time: <%= oddjob.start_time %>
+                    </li>
+                    <li>End Time: <%= oddjob.end_time %>
+                    </li>
+                    <li>Pay: <%= oddjob.total_pay %>
+                    </li>
+                    <li>Description: <%= oddjob.description %>
+                    </li>
+            </ul>
+          </details>
+      </div>
+      <% } // End oddjobs loop. %>
+    </div>
+  </div>
 </body>
+
 
 <!-- FOOTER -->
 <%- include('partials/_footer') %>
