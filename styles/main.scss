@@ -18,19 +18,12 @@ body {
   );
 }
 
-footer {
-  width:100%;
-  position: fixed;
-  bottom: 0;
-}
-
 .footer-contents {
 display: flex;
 flex-direction: row;
 justify-content: center;
 width: 100%;
-
-
+color: black;
 }
 
 .body-container {

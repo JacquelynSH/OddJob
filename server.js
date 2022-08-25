@@ -2,7 +2,7 @@
 require("dotenv").config();
 
 // Web server config
-const PORT = process.env.PORT || 3004;
+const PORT = process.env.PORT || 8081;
 const sassMiddleware = require("./lib/sass-middleware");
 const express = require("express");
 const app = express();
@@ -60,24 +60,42 @@ app.use(
  * HELPER FUNCTIONS
  ******************************************************/
 
-const createOddjob = (title, type, description, date, starttime, endtime, pay, id) => {
+const createOddjob = (title, type, description, date, starttime, endtime, pay, id, lat, lng) => {
   return db.query(
-      'INSERT INTO odd_jobs (title, employer_type, description, date, start_time, end_time, total_pay, employer_id) VALUES ($1, $2, $3, $4, $5, $6, $7, $8);',
-      [title, type, description, date, starttime, endtime, pay, id]
+      'INSERT INTO odd_jobs (title, employer_type, description, date, start_time, end_time, total_pay, employer_id, lat, lng) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10);',
+      [title, type, description, date, starttime, endtime, pay, id, lat, lng]
   );
 }
 
 const getOddjobById = (id) => {
   console.log("ID: ", id);
-    return db.query(
-        'SELECT * FROM odd_jobs WHERE employer_id=$1;',
-        [id] // This array will be sanitized for safety.
-    ).then((result) => {
-      console.log("SELECT * FROM odd_jobs WHERE employer_id=$1;", result.rows);
-      return result.rows
-    });
+  return db.query(
+      'SELECT * FROM odd_jobs WHERE employer_id=$1;',
+      [id] // This array will be sanitized for safety.
+  ).then((result) => {
+    // console.log("SELECT * FROM odd_jobs WHERE employer_id=$1;", result.rows);
+    return result.rows
+  });
 };
 
+const getUserById = (id) => {
+  console.log("ID: ", id);
+  return db.query(
+    'SELECT * FROM users WHERE id=$1;', [id]
+  ).then((result) =>{
+    return result.rows[0];
+  })
+  
+}
+
+const getOddjobWorkerById = (id) => {
+  console.log("ID: ", id);
+  return db.query(
+    'SELECT * FROM odd_jobs WHERE worker_id=$1;', [id]
+  ).then((result) =>{
+    return result.rows;
+  })
+}
 /******************************************************
  * ROUTES
  ******************************************************/
@@ -103,12 +121,17 @@ app.get("/oddjob", (req, res) => {
   res.render("odd_job");
 });
 
+// DASHBOARD
 app.get('/dashboard', (req, res) => {
-    console.log("USERID: ",req.session.user_id);
-    getOddjobById(req.session.user_id).then(oddjobs => {
-        const templateVars = {oddjobs};
+  console.log("USERID: ",req.session.user_id);
+  getOddjobById(req.session.user_id).then(oddjobs => {
+    getUserById(req.session.user_id).then(user => {
+      getOddjobWorkerById(req.session.user_id).then(takenJobs => {
+        const templateVars = {oddjobs, user, takenJobs};
         res.render('dashboard', templateVars);
+      });
     });
+  });
 });
 
 app.get('/login/:id', (req, res) => {
@@ -126,7 +149,7 @@ app.post('/oddjob', (req, res) => {
   } else {
     oddjob.type = true;
   }
-  createOddjob(oddjob.title, oddjob.type, oddjob.description, oddjob.date, oddjob.starttime, oddjob.endtime, oddjob.pay, id).then(() => {
+  createOddjob(oddjob.title, oddjob.type, oddjob.description, oddjob.date, oddjob.starttime, oddjob.endtime, oddjob.pay, id, oddjob.latitude, oddjob.longitude).then(() => {
     res.redirect('/dashboard')
   })
 });

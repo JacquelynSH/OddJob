@@ -12,7 +12,8 @@
   <link rel="stylesheet" href="/styles/odd_job.css" type="text/css" />
 
   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
-  <script type="text/javascript" src="/scripts/marker.js"></script>
+  <script type="text/javascript" src="/scripts/app.js"></script>
+
   <!-- BOOTSTRAP CSS -->
   <link
     rel="stylesheet"
@@ -38,10 +39,10 @@
       <div id="entire-oddjob-form">
         <div class="create-oddJob-form">
 
-        <label for="Title"><b>Title</b></label>
+        <label for="Title"><b>Job Title</b></label>
         <input type="text" placeholder="Enter job title" name="title" id="title" required>
-
-        <label for="type"><b>employer type</b></label>
+        
+        <label for="type"><b>Is this a business or individual?</b></label>
         <select id="type" name="type">
           <option value="Business">Business</option>
           <option value="individual">Individual</option>
@@ -50,13 +51,17 @@
         <label for="location"><b>Location</b></label>
         <input type="search" placeholder="Enter location" name="location" id="location" required>
 
+        <input type="text" name="latitude" id="latitude">
+
+        <input type="text" name="longitude" id="longitude">
+
         <label for="date"><b>Date</b></label>
         <input type="date" placeholder="date of oddJob" name="date" id="date" required>
 
         <label for="start_time"><b>Start time</b></label>
         <input type="time" placeholder="Enter start time" name="starttime" id="starttime" required>
 
-        <label for="end-time"><b>End time</b></label>
+        <label for="endtime"><b>End time</b></label>
         <input type="time" placeholder="Enter end time" name="endtime" id="endtime" required>
 
         <label for="payment"><b>Total pay</b></label>
@@ -71,7 +76,6 @@
 
         <label for="insert-photo"><b>Drag + drop photo here</b></label>
         <input type="image" name="oddjob-photo" id="oddjob-photo" required>
-
 
       </div>
 
