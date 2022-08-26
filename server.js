@@ -85,7 +85,7 @@ const getUserById = (id) => {
   ).then((result) => {
     return result.rows[0];
   })
-  
+
 };
 
 const getOddjobWorkerById = (id) => {
@@ -105,6 +105,24 @@ const getAllOddjobs = () => {
     return result.rows
   })
 }
+
+const getAllAvailablejobs = () => {
+  return db.query(
+    'SELECT lat, lng FROM odd_jobs WHERE worker_id IS NULL;'
+  ).then((result) => {
+    console.log(result.rows)
+    return result.rows
+  })
+}
+
+app.get('/pins', (req, res) => {
+ getAllAvailablejobs().then((pins) => {
+  console.log("PINS", pins)
+  res.json(pins);
+ });
+
+  })
+
 /******************************************************
  * ROUTES
  ******************************************************/
@@ -166,6 +184,8 @@ app.post('/oddjob', (req, res) => {
     res.redirect('/dashboard')
   })
 });
+
+
 
 // app.post("/login", (req, res) => {
 //   // console.log(req.body);
